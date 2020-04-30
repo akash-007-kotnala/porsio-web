@@ -2,7 +2,7 @@
   <div class="home">
   	<pcarousel/>
    <v-row>
-   	<v-col cols="3" class="mx-4">
+   	<v-col cols="0" md="3" sm="4" class="mx-4">
    		<v-card tile class="mx-2 my-2 px-3 py-3" v-for="(filter,idx) in filters" :key="idx">
    			
    				<b>{{ filter.title }}</b>
@@ -11,8 +11,10 @@
    		</v-card>
    	</v-col>
    	
-   			<v-col cols="3" v-for="(product,idx) in products" :key="idx">
+   			<v-col cols="12" sm="4" md="3" v-for="(product,idx) in texts" :key="idx">
+          {{product}}
    				<pcard item=product.name></pcard>
+            
    			</v-col>
    		
    	
@@ -22,8 +24,9 @@
 </template>
 
 <script>
-import pcard from "./../components/p-card";
+import pcard from "./../components/pcard";
 import pcarousel from './../components/pcarousel';
+import firebase from '../firebaseConfig'
 
 export default {
   name: "Home",
@@ -50,17 +53,26 @@ export default {
   		options:['Flipkart','Amazon','Local']
   	}
   	],
-  	products:[
-  	{
-  		name:"shirt",
-  		data:"description"
-  	},
-  	{
-  		name:"shoe",
-  		data:"description"
-  	}
-  	]
-  })
+  	products:[{
+      name:'item'
+    }],
+    texts:[]
+  }),
+  mounted(){
+    var db = firebase.firestore();
+    
+    db
+      .collection('productsData')
+      .get()
+      .then(snap=>{
+        const texts = [];
+        snap.forEach(doc=>{
+          texts.push({'id':[doc.id],[doc.id]:doc.data()});
+        });
+        this.texts = texts;
+        console.log(texts);
+      })
+  }
 };
 </script>
 <style>

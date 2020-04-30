@@ -26,3 +26,11 @@ export default {
   })
 };
 </script>
+<style>
+a{
+  text-decoration: none;
+}
+.v-btn{
+  text-transform:none !important;
+}
+</style>

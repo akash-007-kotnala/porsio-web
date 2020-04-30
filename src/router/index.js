@@ -34,6 +34,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/auth/login.vue")
   },
+  {
+    path: "*",
+    name: "error",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/general/error.vue")
+  },
 ];
 
 const router = new VueRouter({
