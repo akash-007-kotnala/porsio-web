@@ -17,7 +17,7 @@
         class="mx-0"
       >
         <v-rating
-          :value="4.5"
+          :value="2"
           color="amber"
           dense
           half-increments
