@@ -35,6 +35,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/auth/login.vue")
   },
   {
+    path: "/signup",
+    name: "signup",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/auth/signup.vue")
+  },
+  {
     path: "*",
     name: "error",
     component: () =>
